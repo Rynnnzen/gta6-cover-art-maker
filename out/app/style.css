@@ -1,0 +1,140 @@
+@font-face {
+  font-family: "Anton";
+  src: url("./assets/fonts/Anton-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Barlow Condensed";
+  src: url("./assets/fonts/BarlowCondensed-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Barlow Condensed";
+  src: url("./assets/fonts/BarlowCondensed-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-display: swap;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; min-height: 100%; }
+body {
+  background: #150a1e;
+  color: #f5eef7;
+  font: 15px/1.45 "Barlow Condensed", system-ui, sans-serif;
+  font-size: 17px;
+}
+.app {
+  display: flex;
+  gap: 28px;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 24px;
+  max-width: 1480px;
+  margin: 0 auto;
+}
+.stage { flex: 1 1 auto; min-width: 0; }
+.stage-head h1 {
+  margin: 0;
+  font-family: "Anton", sans-serif;
+  font-size: 44px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  background: linear-gradient(90deg, #ffb347, #ff5e8a 55%, #7ee7ff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.tagline { margin: 2px 0 14px; color: #cbb3d6; font-size: 19px; }
+.canvas-wrap { position: relative; }
+#poster {
+  display: block;
+  width: min(100%, calc(100vh - 150px));
+  height: auto;
+  margin: 0 auto;
+  box-shadow: 0 18px 60px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.08);
+  cursor: crosshair;
+  touch-action: none;
+}
+.hint { text-align: center; color: #a98fb8; margin: 10px 0 0; font-size: 16px; }
+
+.panel {
+  flex: 0 0 340px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.group {
+  background: #221128;
+  border: 1px solid #3d2149;
+  border-radius: 12px;
+  padding: 14px 16px;
+}
+.group h2 {
+  margin: 0 0 10px;
+  font-family: "Anton", sans-serif;
+  font-size: 17px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #ffb347;
+}
+.row { display: flex; gap: 8px; flex-wrap: wrap; }
+.field { display: flex; flex-direction: column; gap: 5px; margin-bottom: 10px; font-weight: 600; }
+.field:last-child { margin-bottom: 0; }
+input[type="text"], select {
+  font: inherit;
+  padding: 8px 10px;
+  border: 1px solid #5a3a68;
+  border-radius: 8px;
+  background: #170b1d;
+  color: #f5eef7;
+}
+input[type="range"] { width: 100%; accent-color: #ff5e8a; }
+button {
+  font: inherit;
+  font-weight: 600;
+  padding: 8px 12px;
+  border: 1px solid #5a3a68;
+  border-radius: 8px;
+  background: #2c1737;
+  color: #f5eef7;
+  cursor: pointer;
+}
+button:hover { border-color: #ff5e8a; }
+button.active { background: #ff5e8a; border-color: #ff5e8a; color: #fff; }
+button:focus-visible, input:focus-visible, select:focus-visible { outline: 3px solid #7ee7ff; outline-offset: 2px; }
+.choices { display: flex; flex-direction: column; gap: 6px; margin-bottom: 10px; }
+.choices button { text-align: left; }
+.upload { display: inline-block; font: inherit; font-weight: 600; padding: 8px 12px; border: 1px solid #5a3a68; border-radius: 8px; background: #2c1737; cursor: pointer; }
+.upload input { display: none; }
+.thumbs { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
+.thumbs img {
+  width: 72px; height: 72px; object-fit: cover; border-radius: 8px;
+  border: 2px solid transparent; cursor: pointer;
+}
+.thumbs img.selected { border-color: #ffb347; }
+.thumbs img:focus-visible { outline: 3px solid #7ee7ff; }
+.note { margin: 8px 0 0; color: #a98fb8; font-size: 15px; }
+.export {
+  width: 100%;
+  padding: 13px;
+  font-family: "Anton", sans-serif;
+  font-size: 19px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  background: linear-gradient(90deg, #ff7a3d, #ff2e7e);
+  border: 0;
+  color: #fff;
+}
+#status { margin: 10px 0 0; min-height: 1.4em; color: #7ee7ff; font-size: 16px; }
+
+@media (max-width: 900px) {
+  .app { flex-direction: column; padding: 16px; }
+  .panel { flex: 1 1 auto; width: 100%; }
+  #poster { width: 100%; }
+  .stage-head h1 { font-size: 34px; }
+}
+body.shot-cover .stage-head, body.shot-cover .panel, body.shot-cover .hint { display: none; }
+body.shot-cover .app { padding: 0; max-width: none; }
+body.shot-cover #poster { width: 100vw; height: 100vh; object-fit: contain; box-shadow: none; }

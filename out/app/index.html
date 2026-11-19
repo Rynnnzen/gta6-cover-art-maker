@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vice Mosaic — GTA-style Cover Art Maker</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<main class="app">
+  <section class="stage">
+    <div class="stage-head">
+      <h1>Vice Mosaic</h1>
+      <p class="tagline">Turn your photo into a GTA-style poster cover.</p>
+    </div>
+    <div class="canvas-wrap">
+      <canvas id="poster" width="1080" height="1080" aria-label="Cover preview"></canvas>
+      <p id="hint" class="hint">Click a panel to select it, then drag the photo inside it.</p>
+    </div>
+  </section>
+
+  <aside class="panel" aria-label="Editor controls">
+    <section class="group">
+      <h2>1 · Photos</h2>
+      <div class="row">
+        <label class="upload">Add photo
+          <input id="upload" type="file" accept="image/*" multiple>
+        </label>
+        <button id="use-samples" type="button">Use samples</button>
+      </div>
+      <div id="thumbs" class="thumbs" aria-label="Your photos"></div>
+      <p class="note">Photos stay on your machine — nothing is uploaded.</p>
+    </section>
+
+    <section class="group">
+      <h2>2 · Layout</h2>
+      <div id="layouts" class="choices" role="group" aria-label="Layout">
+        <button type="button" data-layout="vice" class="active">Vice Mosaic · 5 panels</button>
+        <button type="button" data-layout="diagonal">Diagonal Heat · 3 panels</button>
+        <button type="button" data-layout="strip">Night Strip · 4 panels</button>
+      </div>
+      <label class="field">Colour grade
+        <select id="grade">
+          <option value="sunset" selected>Sunset</option>
+          <option value="neon">Neon</option>
+          <option value="none">Original</option>
+        </select>
+      </label>
+      <label class="field">Grade intensity <span id="intensity-value">70%</span>
+        <input id="intensity" type="range" min="0" max="100" value="70">
+      </label>
+    </section>
+
+    <section class="group">
+      <h2>3 · Selected panel</h2>
+      <p id="active-panel" class="note">Panel 1 of 5 — Main shot</p>
+      <label class="field">Photo in this panel
+        <select id="panel-photo"></select>
+      </label>
+      <label class="field">Zoom <span id="zoom-value">100%</span>
+        <input id="zoom" type="range" min="100" max="260" value="100">
+      </label>
+      <div class="row">
+        <button id="reset-crop" type="button">Reset crop</button>
+        <button id="fill-all" type="button">Fill all panels</button>
+      </div>
+    </section>
+
+    <section class="group">
+      <h2>4 · Caption</h2>
+      <label class="field">Title — line 1
+        <input id="title1" type="text" maxlength="16" value="NEON">
+      </label>
+      <label class="field">Title — line 2
+        <input id="title2" type="text" maxlength="16" value="GETAWAY">
+      </label>
+      <label class="field">Subtitle
+        <input id="subtitle" type="text" maxlength="48" value="LAST LIGHT OVER VICE CITY">
+      </label>
+    </section>
+
+    <section class="group">
+      <h2>5 · Export</h2>
+      <div id="formats" class="choices" role="group" aria-label="Export size">
+        <button type="button" data-format="square" class="active">Square · 1080 × 1080</button>
+        <button type="button" data-format="portrait">Portrait · 1080 × 1350</button>
+        <button type="button" data-format="landscape">Landscape · 1920 × 1080</button>
+      </div>
+      <button id="export" type="button" class="export">Download PNG</button>
+      <p id="status" role="status"></p>
+    </section>
+  </aside>
+</main>
+<script type="module" src="./src/main.js"></script>
+</body>
+</html>
